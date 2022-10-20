@@ -1,0 +1,17 @@
+Package: rawsParserADTKMD
+Version: 2.0
+Title: Kenya Meteorological Department (KMD) Automatic Weather Station (AWS) Data Parsing
+Description: Process data from KMD's AWS Networks. It fetches the data from the networks database. The data are converted to a standard format used by KMD's AWS Data Tools (ADT).
+Author: Rija Faniriantsoa <rijaf@iri.columbia.edu>
+Maintainer: Rija Faniriantsoa <rijaf@iri.columbia.com>
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+NeedsCompilation: no
+Date: 2022-03-14
+Imports: 
+    ssh,
+    httr,
+    DBI,
+    RMySQL,
+RoxygenNote: 7.2.0
