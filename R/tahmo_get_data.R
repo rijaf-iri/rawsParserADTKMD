@@ -41,6 +41,7 @@ get.tahmo.data <- function(aws_dir){
             last <- as.POSIXct(as.integer(awsInfo$last[j]), origin = origin, tz = tz) + 60
         }
         daty <- seq(last, now, 'day')
+        daty <- time_local2utc_time(daty)
 
         for(s in 1:(length(daty) - 1)){
             ss <- if(s == 1) 0 else 1
