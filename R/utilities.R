@@ -34,20 +34,6 @@ connect.ssh <- function(adt_dir){
     return(session)
 }
 
-# adt_dir <- "D:/ADT"
-# session <- connect.ssh(adt_dir)
-
-# dirUP <- "/home/administrator/ADT"
-# dirADT <- file.path(dirUP, "AWS_DATA", "DATA", "minutes", "KCSAP")
-# ssh::ssh_exec_wait(session, command = c(
-#     paste0('if [ ! -d ', dirADT, ' ] ; then mkdir -p ', dirADT, ' ; fi')
-# ))
-# ssh::ssh_disconnect(session)
-
-# capture the stdout/stderr:
-# out <- ssh::ssh_exec_internal(session, "R -e 'rnorm(100)'")
-# cat(rawToChar(out$stdout))
-
 format.out.msg <- function(msg, logfile, append = TRUE){
     ret <- c(paste("Time:", Sys.time(), "\n"), msg, "\n",
              "*********************************\n")

@@ -131,6 +131,8 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
             utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
                                row.names = FALSE, quote = FALSE)
         }
+
+        cat(paste('Done', awsID, '\n'))
     }
 
     return(0)
