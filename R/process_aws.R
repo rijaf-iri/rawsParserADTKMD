@@ -16,7 +16,7 @@ process.tahmo <- function(aws_dir){
     ret <- try(get.tahmo.data(aws_dir), silent = TRUE)
     if(inherits(ret, "try-error")){ 
         mserr <- gsub('[\r\n]', '', ret[1])
-        msg <- paste(ret, "Getting TAHMO data failed")
+        msg <- "Getting TAHMO data failed"
         format.out.msg(paste(mserr, '\n', msg), logPROC)
         return(2)
     }
@@ -43,7 +43,7 @@ process.kcsap <- function(aws_dir, kcsap_dir, adt_dir){
     ret <- try(get.kcsap.data(aws_dir, kcsap_dir, adt_dir), silent = TRUE)
     if(inherits(ret, "try-error")){ 
         mserr <- gsub('[\r\n]', '', ret[1])
-        msg <- paste(ret, "Getting KCSAP data failed")
+        msg <- "Getting KCSAP data failed"
         format.out.msg(paste(mserr, '\n', msg), logPROC)
         return(2)
     }

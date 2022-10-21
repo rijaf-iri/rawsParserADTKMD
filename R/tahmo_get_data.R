@@ -50,6 +50,7 @@ get.tahmo.data <- function(aws_dir){
 
             qres <- httr::GET(api_url, httr::accept_json(),
                     httr::authenticate(api$id, api$secret),
+                    httr::timeout(20),
                     query = list(start = start, end = end))
             if(httr::status_code(qres) != 200) next
 
