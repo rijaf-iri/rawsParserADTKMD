@@ -44,7 +44,7 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
         aws_pars <- awsVAR[, c('id', 'var_height', 'var_code', 'stat_code')]
 
         if(is.na(awsInfo$last[j])){
-            last <- as.POSIXct("201501010000", format = kcsap_time, tz = tz)
+            last <- as.POSIXct("202201010000", format = kcsap_time, tz = tz)
         }else{
             last <- as.POSIXct(as.integer(awsInfo$last[j]), origin = origin, tz = tz) + 1
         }
