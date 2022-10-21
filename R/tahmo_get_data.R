@@ -25,7 +25,6 @@ get.tahmo.data <- function(aws_dir){
                                  stringsAsFactors = FALSE, quote = "\"")
 
     api <- tahmo.api(aws_dir)$connection
-    now <- Sys.time()
 
     for(j in seq_along(awsInfo$id)){
         awsID <- awsInfo$id[j]
@@ -40,8 +39,11 @@ get.tahmo.data <- function(aws_dir){
         }else{
             last <- as.POSIXct(as.integer(awsInfo$last[j]), origin = origin, tz = tz) + 60
         }
-        daty <- seq(last, now, 'day')
+        daty <- seq(last, Sys.time(), 'day')
         daty <- time_local2utc_time(daty)
+        if(length(daty) == 1){
+            daty <- c(daty, time_local2utc_time(Sys.time()))
+        }
 
         for(s in 1:(length(daty) - 1)){
             ss <- if(s == 1) 0 else 1

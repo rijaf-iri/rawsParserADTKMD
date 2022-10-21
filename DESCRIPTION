@@ -6,7 +6,6 @@ Author: Rija Faniriantsoa <rijaf@iri.columbia.edu>
 Maintainer: Rija Faniriantsoa <rijaf@iri.columbia.com>
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 NeedsCompilation: no
 Date: 2022-03-14
 Imports: 

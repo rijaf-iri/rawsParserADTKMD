@@ -37,8 +37,6 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
     awsInfo <- utils::read.table(awsFile, sep = ',', header = TRUE,
                                  stringsAsFactors = FALSE, quote = "\"")
 
-    now <- Sys.time()
-
     for(j in seq_along(awsInfo$id)){
         awsID <- awsInfo$id[j]
         awsVAR <- varTable[varTable$id == awsID, , drop = FALSE]
@@ -50,8 +48,11 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
         }else{
             last <- as.POSIXct(as.integer(awsInfo$last[j]), origin = origin, tz = tz) + 1
         }
-        daty <- seq(last, now, 'day')
+        daty <- seq(last, Sys.time(), 'day')
         daty <- time_local2utc_time(daty)
+        if(length(daty) == 1){
+            daty <- c(daty, time_local2utc_time(Sys.time()))
+        }
 
         for(s in 1:(length(daty) - 1)){
             ss <- if(s == 1) 0 else 1
