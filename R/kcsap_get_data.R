@@ -105,6 +105,8 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
                 next
             }
 
+            awsInfo$last[j] <- max(out$obs_time)
+
             locFile <- paste(range(out$obs_time), collapse = "_")
             locFile <- paste0(awsID, "_", locFile, '.rds')
             locFile <- file.path(dirOUT, locFile)
@@ -124,10 +126,10 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
             }else{
                 cat(basename(locFile), file = uploadFile, append = TRUE)
             }
-        }
 
-        utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
-                           row.names = FALSE, quote = FALSE)
+            utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
+                               row.names = FALSE, quote = FALSE)
+        }
     }
 
     return(0)

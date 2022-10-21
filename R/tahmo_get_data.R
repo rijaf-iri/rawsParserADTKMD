@@ -84,18 +84,11 @@ get.tahmo.data <- function(aws_dir){
             locFile <- paste0(awsID, "_", locFile, '.rds')
             locFile <- file.path(dirOUT, locFile)
             saveRDS(out, locFile)
-            ## utils::write.table(awsInfo, ) can be here too
+
+            utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
+                               row.names = FALSE, quote = FALSE)
         }
-
-        ## redondant, mais utile en cas de coupure
-        utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
-                           row.names = FALSE, quote = FALSE)
     }
-
-    ## Issue: the last dates of downloaded
-    ## aws data are not saved in case of interruption
-    # utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
-    #                    row.names = FALSE, quote = FALSE)
 
     return(0)
 }
