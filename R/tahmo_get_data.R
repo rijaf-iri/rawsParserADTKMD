@@ -52,7 +52,11 @@ get.tahmo.data <- function(aws_dir){
 
             qres <- httr::GET(api_url, httr::accept_json(),
                     httr::authenticate(api$id, api$secret),
-                    httr::timeout(20),
+                    ## httr timeout 60s
+                    # httr::timeout(60),
+                    ## tell curl to wait 60 seconds for the connection to establish
+                    ## before returning an error
+                    config = httr::config(connecttimeout = 60),
                     query = list(start = start, end = end))
             if(httr::status_code(qres) != 200) next
 
@@ -90,6 +94,8 @@ get.tahmo.data <- function(aws_dir){
             utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
                                row.names = FALSE, quote = FALSE)
         }
+
+        cat(paste('Done', awsID, '\n'))
     }
 
     return(0)
