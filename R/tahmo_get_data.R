@@ -103,6 +103,8 @@ get.tahmo.data <- function(aws_dir){
 
             utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
                                row.names = FALSE, quote = FALSE)
+
+            cat(paste('OK', basename(locFile), '\n'))
         }
 
         cat(paste('Done', awsID, '\n'))
