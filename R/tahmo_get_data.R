@@ -26,7 +26,8 @@ get.tahmo.data <- function(aws_dir){
 
     api <- tahmo.api(aws_dir)$connection
 
-    for(j in seq_along(awsInfo$id)){
+    for(j in 32:144){
+    # for(j in seq_along(awsInfo$id)){
         awsID <- awsInfo$id[j]
         awsVAR <- varTable[varTable$id == awsID, , drop = FALSE]
 
@@ -50,14 +51,23 @@ get.tahmo.data <- function(aws_dir){
             start <- format(daty[s] + ss, tahmo_time)
             end <- format(daty[s + 1], tahmo_time)
 
-            qres <- httr::GET(api_url, httr::accept_json(),
-                    httr::authenticate(api$id, api$secret),
-                    ## httr timeout 60s
-                    # httr::timeout(60),
-                    ## tell curl to wait 60 seconds for the connection to establish
-                    ## before returning an error
-                    config = httr::config(connecttimeout = 60),
-                    query = list(start = start, end = end))
+            qres <- try(httr::GET(api_url, httr::accept_json(),
+                        httr::authenticate(api$id, api$secret),
+                        ## httr timeout 300s
+                        httr::timeout(300),
+                        ## tell curl to wait 120 seconds for the connection to establish
+                        ## before returning an error
+                        config = httr::config(connecttimeout = 120),
+                        query = list(start = start, end = end)),
+                    silent = TRUE)
+
+            if(inherits(qres, "try-error")){ 
+                mserr <- gsub('[\r\n]', '', qres[1])
+                msg <- paste("Unable to download data for", awsID)
+                format.out.msg(paste(mserr, '\n', msg), awsLOG)
+                next
+            }
+
             if(httr::status_code(qres) != 200) next
 
             resc <- httr::content(qres)
