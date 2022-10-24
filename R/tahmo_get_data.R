@@ -26,8 +26,7 @@ get.tahmo.data <- function(aws_dir){
 
     api <- tahmo.api(aws_dir)$connection
 
-    for(j in 32:144){
-    # for(j in seq_along(awsInfo$id)){
+    for(j in seq_along(awsInfo$id)){
         awsID <- awsInfo$id[j]
         awsVAR <- varTable[varTable$id == awsID, , drop = FALSE]
 
@@ -104,10 +103,10 @@ get.tahmo.data <- function(aws_dir){
             utils::write.table(awsInfo, awsFile, sep = ",", na = "", col.names = TRUE,
                                row.names = FALSE, quote = FALSE)
 
-            cat(paste('OK', basename(locFile), '\n'))
+            # cat(paste('OK', basename(locFile), '\n'))
         }
 
-        cat(paste('Done', awsID, '\n'))
+        # cat(paste('Done', awsID, '\n'))
     }
 
     return(0)

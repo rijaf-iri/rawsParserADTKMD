@@ -132,7 +132,7 @@ get.kcsap.data <- function(aws_dir, kcsap_dir, adt_dir){
                                row.names = FALSE, quote = FALSE)
         }
 
-        cat(paste('Done', awsID, '\n'))
+        # cat(paste('Done', awsID, '\n'))
     }
 
     return(0)
